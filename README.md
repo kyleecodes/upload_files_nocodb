@@ -4,11 +4,11 @@
 
 If you're familiar with Airtable, it's similar to that, but open-source. Yay! 🎉
 
-This is a quick tutorial for uploading a .csv file onto NocoDB using a Python script. Let's get started:
+This is a brief tutorial for uploading a .csv file onto NocoDB using a Python script:
 
 ### Prerequisites:
 
-- Docker or Node.js ( > v14.x )
+- Docker ( > v14.x )
 - Python3
 - Pip3
 
@@ -22,7 +22,7 @@ This is a quick tutorial for uploading a .csv file onto NocoDB using a Python sc
 
 - [Youth & Adult Literacy Rates .csv file, downloaded and unzipped from Kaggle](https://www.kaggle.com/datasets/thedevastator/youth-adult-literacy-rates-in-2019) or dataset of your choice. I named this example `literacy_rates.csv` and moved it into my working directory.
 
-## Launch a local intance of NocoDB:
+## Launch a local instance of NocoDB:
 
 First, clone the NocoDB repo:
 ```
@@ -46,11 +46,9 @@ Log into the NocoDB UI for your local instance here: http://localhost:8080/dashb
 
 Create a Project, then create a Table. 
 
-The Table will contain the data for `literacy_rates.csv` or any file that you use. When creating a Table, you can expand for more details and select default columns, as pictured below. In my case, `title` was not necessary, but I always recommend `created_at` and `updated_at` columns in any dataset. 
+The Table will contain the data for `literacy_rates.csv` or any file that you use. When creating a Table, you can expand for more details and select default columns. In my case, `title` was not necessary, but I always recommend `created_at` and `updated_at` columns in any dataset. 
 
 In this example, the [primary key](https://docs.nocodb.com/setup-and-usages/primary-key) `Id` is set using the index of the pandas data frame, so that if you run the script again, it will return a `Bad Request` error and not double-upload rows.
-
-![](CreateTable.png)
 
 In your table, use the UI to add your datasets columns and respective data types. For `literacy_rates.csv`, here are the columns, and their data types:
 
@@ -74,7 +72,6 @@ nocodb_auth_token=<your auth token>
 nocodb_url=http://localhost:8080
 nocodb_project_name=<your project name>
 nocodb_table_name=<your table name>
-nocodb_org_name=noco
 nocodb_upload_file_path=./literacy_rates.csv (or other file)
 nocodb_upload_file_chunk_size=1000000
 ```
@@ -83,7 +80,7 @@ nocodb_upload_file_chunk_size=1000000
 
 ```
 pip3 install -r requirements.txt
-python3 upload_nocodb.py
+python3 upload_file.py
 ```
 
 Finally, verify the upload in the NocoDB UI! 🎉
@@ -91,5 +88,11 @@ Finally, verify the upload in the NocoDB UI! 🎉
 # Resources
 
 - [NocoDB Rest API Docs](https://all-apis.nocodb.com/)
-- [NocoDB SWAGGER docs](https://docs.nocodb.com/developer-resources/accessing-apis#swagger-ui) 
-- [NocoDB Primary Key Docs](https://docs.nocodb.com/setup-and-usages/primary-key/)
+- [NocoDB Official Docs - SWAGGER API UI](https://docs.nocodb.com/developer-resources/accessing-apis#swagger-ui) 
+- [NocoDB Official Docs - Primary Key](https://docs.nocodb.com/setup-and-usages/primary-key/)
+- [NocoDB Official Docs - Create a Project](https://docs.nocodb.com/setup-and-usages/dashboard/)
+- [NocoDB Official Docs - NC_DB Variable](https://docs.nocodb.com/engineering/architecture)
+- [NocoDB Official Docs - Create a Table](https://docs.nocodb.com/setup-and-usages/table-operations/#table-create)
+- [NocoDB Official Docs - Create Columns](https://docs.nocodb.com/setup-and-usages/table-operations/#column)
+- [NocoDB Official Docs - Column Types](https://docs.nocodb.com/setup-and-usages/column-types)
+- [NocoDB Official Docs - Accessing APIs](https://docs.nocodb.com/developer-resources/accessing-apis/)

@@ -11,7 +11,6 @@ load_dotenv()
 
 auth_token = getenv('nocodb_auth_token')
 nocodb_base_uri = getenv('nocodb_url')
-org_name = getenv('nocodb_org_name')
 project_name = getenv('nocodb_project_name')
 upload_file_path = getenv('nocodb_upload_file_path')
 table_name = getenv('nocodb_table_name')
